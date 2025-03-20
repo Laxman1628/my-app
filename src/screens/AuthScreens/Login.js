@@ -23,7 +23,7 @@ const LoginScreen = ({navigation, setIsLoggedIn}) => {
   // Optimize function using useCallback (prevents re-creation on re-renders)
   const handleLogin = useCallback(() => {
     console.log('Logging in with:', email);
-    setIsLoggedIn(true);
+    // setIsLoggedIn(true);
   }, [email]);
 
   return (

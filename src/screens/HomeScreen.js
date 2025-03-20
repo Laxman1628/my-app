@@ -1,15 +1,12 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
 
 export default function HomeScreen({navigation}) {
+  const [selected, setSelected] = useState('');
 
   return (
     <View style={styles.container}>
-    <Text>Welcome To ND APP</Text>
+      <Text>Welcome To ND APP</Text>
     </View>
   );
 }
