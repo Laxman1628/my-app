@@ -17,7 +17,7 @@ import {
 import {STRINGS} from '../../common/strings';
 import PrimaryBtn from '../../Components/CustomButton/PrimaryBtn';
 
-const LoginScreen = ({navigation, setIsLoggedIn}) => {
+const LoginScreen = () => {
   const [email, setEmail] = useState('');
 
   // Optimize function using useCallback (prevents re-creation on re-renders)

@@ -3,11 +3,12 @@ import React, {useEffect} from 'react';
 
 //     --- React Native UI Components ---
 import {ImageBackground, StyleSheet, View} from 'react-native';
+import Strings from '../../utils/Constants/Strings';
 
 export default function SplashScreen({navigation}) {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('Login'); // Move to Login after 3 seconds
+      navigation.navigate(Strings.NAVIGATION.login); // Move to Login after 3 seconds
     }, 3000);
   }, [navigation]);
 

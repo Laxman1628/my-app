@@ -6,7 +6,8 @@ import LoginScreen from '../screens/AuthScreens/Login';
 import TabNavigator from './TabNavigator';
 import {NavigationContainer} from '@react-navigation/native';
 import SignUp from '../screens/AuthScreens/SignUp';
-import { App_paths } from '../utils/Constants';
+import OtpScreen from '../screens/AuthScreens/OtpScreen';
+import Strings from '../utils/Constants/Strings';
 
 export default function index() {
   const Stack = createNativeStackNavigator();
@@ -16,13 +17,15 @@ export default function index() {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {!isLoggedIn ? (
           <>
-            <Stack.Screen name={App_paths.Splash} component={SplashScreen} />
-            <Stack.Screen name={App_paths.Login}>
+            <Stack.Screen name={Strings.NAVIGATION.splash} component={SplashScreen} />
+            <Stack.Screen name={Strings.NAVIGATION.login}>
               {props => (
-                <LoginScreen {...props} setIsLoggedIn={setIsLoggedIn} />
+                <LoginScreen {...props} component={LoginScreen}  />
               )}
             </Stack.Screen>
-            <Stack.Screen name={App_paths.SignUp} component={SignUp}  />
+            <Stack.Screen name={Strings.NAVIGATION.signup} component={SignUp}  />
+            <Stack.Screen name={Strings.NAVIGATION.otp} component={OtpScreen}  />
+            
           </>
         ) : (
           <Stack.Screen name="Main" component={TabNavigator} />
