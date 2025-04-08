@@ -12,9 +12,11 @@ export default function ChallengesScreen({route}) {
 // Styles
 const styles = StyleSheet.create({
   container: {
+
     flex: 1,
-    // backgroundColor: '#F5F5DC',
-  },
+    padding: 20,
+
+},
   image: {
     width: '100%',
     height: 250,

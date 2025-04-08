@@ -1,16 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import Icons, { iconType } from '../assets/icon/Icons';
+
 
 export default function HomeScreen({navigation}) {
   const [selected, setSelected] = useState('');
 
   return (
     <View style={styles.container}>
-                <Icons type={iconType.fa5} name={'walking'} size={24} />
-
       <Text>Welcome To ND APP</Text>
     </View>
   );
