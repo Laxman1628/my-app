@@ -20,7 +20,7 @@ export default function index() {
             <Stack.Screen name={Strings.NAVIGATION.splash} component={SplashScreen} />
             <Stack.Screen name={Strings.NAVIGATION.login}>
               {props => (
-                <LoginScreen {...props} component={LoginScreen}  />
+                <LoginScreen {...props} component={LoginScreen}  setIsLoggedIn={setIsLoggedIn}  />
               )}
             </Stack.Screen>
             <Stack.Screen name={Strings.NAVIGATION.signup} component={SignUp}  />

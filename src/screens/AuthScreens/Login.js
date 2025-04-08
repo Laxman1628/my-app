@@ -17,13 +17,17 @@ import {
 import {STRINGS} from '../../common/strings';
 import PrimaryBtn from '../../Components/CustomButton/PrimaryBtn';
 
-const LoginScreen = () => {
+
+
+
+
+const LoginScreen = ({navigation, setIsLoggedIn}) => {
   const [email, setEmail] = useState('');
 
   // Optimize function using useCallback (prevents re-creation on re-renders)
   const handleLogin = useCallback(() => {
     console.log('Logging in with:', email);
-    // setIsLoggedIn(true);
+    setIsLoggedIn(true);
   }, [email]);
 
   return (
