@@ -1,5 +1,5 @@
 //    --- React & Core Hooks ---
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useCallback} from 'react';
 //    --- React Native UI Components ---
 import {
   View,
@@ -16,6 +16,7 @@ import {
 //    --- Constants & Localization ---
 import {STRINGS} from '../../common/strings';
 import PrimaryBtn from '../../Components/CustomButton/PrimaryBtn';
+import Strings from '../../utils/Constants/Strings';
 
 
 
@@ -58,7 +59,7 @@ const LoginScreen = ({navigation, setIsLoggedIn}) => {
 
           {/* OR Section */}
           <Text style={styles.orText}>{STRINGS.orText}</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+          <TouchableOpacity onPress={() => navigation.navigate(Strings.NAVIGATION.signup)}>
             <Text style={styles.signupText}>
               {STRINGS.newUser}{' '}
               <Text style={styles.signupLink}>{STRINGS.signUp}</Text>
