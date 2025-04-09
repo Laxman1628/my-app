@@ -15,14 +15,14 @@ import {
 
 //    --- Constants & Localization ---
 import {STRINGS} from '../../common/strings';
-import PrimaryBtn from '../../Components/CustomButton/PrimaryBtn';
 import Strings from '../../utils/Constants/Strings';
+import CustomTextInput from '../../Components/textInput/CustomTextInput';
+import Fonts, { fontSize } from '../../utils/Constants/Fonts';
+import Colors from '../../utils/Constants/Colors';
+import { hp , wp } from '../../common/Functions/Dimensions';
+import CustomButton from '../../Components/buttons/CustomButton';
 
-
-
-
-
-const LoginScreen = ({navigation, setIsLoggedIn}) => {
+const LoginScreen = ({navigation, setIsLoggedIn, ...props}) => {
   const [email, setEmail] = useState('');
 
   // Optimize function using useCallback (prevents re-creation on re-renders)
@@ -38,28 +38,34 @@ const LoginScreen = ({navigation, setIsLoggedIn}) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.inner}>
           {/* Email Input */}
-          <Text style={styles.label}>{STRINGS.emailLabel}</Text>
-          <TextInput
-            style={styles.input}
-            placeholder={STRINGS.emailPlaceholder}
-            placeholderTextColor="#999"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            returnKeyType="done"
+          <CustomTextInput
+            name={'userId'}
+            inputStyle={{...styles.textInputStyle}}
+            // onChangeText={props?.handleChange}
+            inputProps={{
+              // flex: 1,
+              // value: props.userId,
+              placeholder: 'Email or Mobile',
+            }}
           />
 
           {/* Login Button */}
-          <PrimaryBtn
-            title={STRINGS.loginButton}
-            style={styles?.button}
-            onPress={handleLogin}
-          />
+          <CustomButton
+                            title={'Login using OTP'}
+                            name={'getOtp'}
+                            // onPress={props?.handleSubmit}
+                            // isLoading={store.getState().settings.isLoading}
+                            btnStyles={styles.btnStyles}
+                            btnTitleStyles={{
+                                ...styles.textStyle,
+                                ...styles.btnTextStyle
+                            }}
+                        />
 
           {/* OR Section */}
           <Text style={styles.orText}>{STRINGS.orText}</Text>
-          <TouchableOpacity onPress={() => navigation.navigate(Strings.NAVIGATION.signup)}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(Strings.NAVIGATION.signup)}>
             <Text style={styles.signupText}>
               {STRINGS.newUser}{' '}
               <Text style={styles.signupLink}>{STRINGS.signUp}</Text>
@@ -94,16 +100,23 @@ const styles = StyleSheet.create({
     color: '#333',
     marginBottom: 5,
   },
-  input: {
-    width: '100%',
-    height: 45,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    marginBottom: 15,
-    fontSize: 16,
+  textInputStyle: {
+    fontSize: fontSize.normal,
+    elevation: 5,
+    height: hp('6'),
+    width: wp('90'), // Matches the text input width with the remaining space
+    color: Colors.text_black,
   },
+
+  textStyle: {
+    fontSize: fontSize.normal,
+    fontFamily: Fonts.medium,
+    color: '#fff'
+},
+btnStyles: {
+  width: wp('90'),
+  marginVertical: hp(2)
+},
   button: {
     backgroundColor: '#0A3875',
     paddingVertical: 14,

@@ -1,4 +1,4 @@
-import { hp } from "../../common/functions/dimensions"
+import { hp } from "../../common/Functions/Dimensions"
 
 
 export default {
