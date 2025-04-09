@@ -46,13 +46,14 @@ const LoginScreen = ({navigation, setIsLoggedIn, ...props}) => {
   };
 
   const handleSubmit = async () => {
-    if (!validate()) return;
+    // if (!validate()) return;
     try {
       console.log('Logging in with:', state);
       // Call your login API here
     } catch (error) {
       console.log('Login error -->', error);
     }
+    setIsLoggedIn(true)
   };
 
   return (

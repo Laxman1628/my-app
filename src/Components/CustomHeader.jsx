@@ -1,51 +1,74 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons'; // Or use any icon library you prefer
+import Colors from '../utils/Constants/Colors';
+import Icons, {iconType} from '../assets/icon/Icons';
 
-const CustomHeader = ({ navigation }) => {
+const CustomHeader = ({username = 'Lakhan N', navigation}) => {
   return (
     <View style={styles.headerContainer}>
-      {/* Title: Static "ND" in Italic */}
-      <Text style={styles.title}>ND</Text>
+      {/* Greeting */}
+      <Text style={styles.greetingText}>Hi, {username}</Text>
 
-      {/* Avatar on Right (Touchable) */}
-      <TouchableOpacity 
-        style={styles.avatarContainer} 
-        onPress={() => navigation.navigate('Login')}  // Navigate to Login Screen
-      >
-        <Text style={styles.avatarText}>L</Text>
-      </TouchableOpacity>
+      {/* Icons */}
+      <View style={styles.iconContainer}>
+        {/* Search Icon */}
+        <TouchableOpacity>
+          <Icons
+            type={iconType.ionicon}
+            name="search-outline"
+            size={24}
+            color="#000"
+          />
+        </TouchableOpacity>
+
+        {/* Notification Icon with Red Dot */}
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Notifications')}
+          style={styles.bellWrapper}>
+          <Icons
+            type={iconType.ionicon}
+            name="notifications-outline"
+            size={24}
+            color="#000"
+          />
+          <View style={styles.redDot} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   headerContainer: {
-    height: 60,
-    backgroundColor: '#2E67A0', // Blue background color
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 15,
-    paddingTop: 10,
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 20,
+    backgroundColor: Colors.background_transperant_dark, // Match the background from the image
   },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    fontStyle: 'italic', // Italic font style
-    color: '#fff',
+  greetingText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#000',
   },
-  avatarContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#ccc', // Light gray avatar background
-    justifyContent: 'center',
+  iconContainer: {
+    flexDirection: 'row',
+    gap: 16,
     alignItems: 'center',
   },
-  avatarText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
+  bellWrapper: {
+    position: 'relative',
+  },
+  redDot: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'red',
   },
 });
 
