@@ -7,31 +7,20 @@ import Fonts, { fontSize } from '../../utils/Constants/Fonts';
 import Colors from '../../utils/Constants/Colors';
 import Strings from '../../utils/Constants/Strings';
 
-export default function SignUpUI(props) {
+export default function LoginUI(props) {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.TitleText}>Welcome User</Text>
-        <Text style={styles.SubText}>Sign up to join</Text>
+        <Text style={styles.TitleText}>Welcome Back</Text>
+        <Text style={styles.SubText}>Login to continue</Text>
       </View>
 
       <View style={styles.inputContainer}>
-        <CustomTextInput
-          name="userId"
-          inputStyle={styles.textInputStyle}
-          onChangeText={props?.handleChange}
-          inputProps={{
-            editable: !props.showOtp,
-            value: props.userId,
-            placeholder: 'Email or Mobile',
-          }}
-        />
         <CustomTextInput
           name="username"
           inputStyle={styles.textInputStyle}
           onChangeText={props?.handleChange}
           inputProps={{
-            editable: !props.showOtp,
             value: props.username,
             placeholder: 'Enter username',
           }}
@@ -41,28 +30,28 @@ export default function SignUpUI(props) {
           inputStyle={styles.textInputStyle}
           onChangeText={props?.handleChange}
           inputProps={{
-            editable: !props.showOtp,
             value: props.password,
             placeholder: 'Enter password',
+            secureTextEntry: true,
           }}
         />
       </View>
 
       <CustomButton
-        title="Sign Up"
-        name="signup"
+        title="Login"
+        name="login"
         onPress={props?.handleSubmit}
         btnStyles={styles.btnStyles}
         btnTitleStyles={[styles.textStyle, styles.btnTextStyle]}
       />
 
-      {/* Already have an account? */}
+      {/* Navigation to SignUp */}
       <TouchableOpacity
-        style={styles.loginRedirectContainer}
-        onPress={() => props.navigation.navigate(Strings.NAVIGATION.login)}>
-        <Text style={styles.loginText}>
-          Already have an account?{' '}
-          <Text style={styles.loginLink}>Login</Text>
+        style={styles.signUpRedirectContainer}
+        onPress={() => props.navigation.navigate(Strings.NAVIGATION.signup)}>
+        <Text style={styles.signUpText}>
+          Don’t have an account?{' '}
+          <Text style={styles.signUpLink}>Sign Up</Text>
         </Text>
       </TouchableOpacity>
     </View>
@@ -113,16 +102,16 @@ const styles = StyleSheet.create({
   btnTextStyle: {
     color: 'white',
   },
-  loginRedirectContainer: {
+  signUpRedirectContainer: {
     marginTop: hp(2),
   },
-  loginText: {
+  signUpText: {
     fontSize: fontSize.normal,
     fontFamily: Fonts.medium,
     color: Colors.form_text,
   },
-  loginLink: {
-    color: Colors.primary, // or any highlight color you prefer
+  signUpLink: {
+    color: Colors.primary,
     textDecorationLine: 'underline',
   },
 });

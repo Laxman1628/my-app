@@ -1,128 +1,53 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React from 'react';
-import { hp, wp } from '../../common/Functions/Dimensions';
-import CustomTextInput from '../../Components/textInput/CustomTextInput';
-import CustomButton from '../../Components/buttons/CustomButton';
-import Fonts, { fontSize } from '../../utils/Constants/Fonts';
-import Colors from '../../utils/Constants/Colors';
-import Strings from '../../utils/Constants/Strings';
+import { View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import SignUpUI from './SignUpUI';
 
-export default function SignUpUI(props) {
+export default function SignUp(props) {
+  const [state, setState] = useState({
+    userId: '',
+    showOtp: false,
+    username: '',
+    password: '',
+  });
+
+  useEffect(() => {
+    console.log('state -->', state);
+  }, [state.showOtp]);
+
+  const handleChange = (key, value) => {
+    if (key === 'change') {
+      setState(prev => ({ ...prev, showOtp: false }));
+    } else {
+      setState(prev => ({ ...prev, [key]: value }));
+    }
+  };
+
+  const validate = () => {
+    if (!state?.userId?.trim()?.length) {
+      appsnackbar.showErrMsg('Please enter valid Email/Mobile Number');
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async () => {
+    if (!validate()) return;
+    try {
+      console.log('state', state);
+      // Add API call or logic here
+    } catch (error) {
+      console.error('Submission error -->', error);
+    }
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.TitleText}>Welcome User</Text>
-        <Text style={styles.SubText}>Sign up to join</Text>
-      </View>
-
-      <View style={styles.inputContainer}>
-        <CustomTextInput
-          name="userId"
-          inputStyle={styles.textInputStyle}
-          onChangeText={props?.handleChange}
-          inputProps={{
-            editable: !props.showOtp,
-            value: props.userId,
-            placeholder: 'Email or Mobile',
-          }}
-        />
-        <CustomTextInput
-          name="username"
-          inputStyle={styles.textInputStyle}
-          onChangeText={props?.handleChange}
-          inputProps={{
-            editable: !props.showOtp,
-            value: props.username,
-            placeholder: 'Enter username',
-          }}
-        />
-        <CustomTextInput
-          name="password"
-          inputStyle={styles.textInputStyle}
-          onChangeText={props?.handleChange}
-          inputProps={{
-            editable: !props.showOtp,
-            value: props.password,
-            placeholder: 'Enter password',
-          }}
-        />
-      </View>
-
-      <CustomButton
-        title="Sign Up"
-        name="signup"
-        onPress={props?.handleSubmit}
-        btnStyles={styles.btnStyles}
-        btnTitleStyles={[styles.textStyle, styles.btnTextStyle]}
+    <View style={{ flex: 1 }}>
+      <SignUpUI
+        {...props}
+        {...state}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
       />
-
-      {/* Already have an account? */}
-      <TouchableOpacity
-        style={styles.loginRedirectContainer}
-        onPress={() => props.navigation.navigate(Strings.NAVIGATION.login)}>
-        <Text style={styles.loginText}>
-          Already have an account?{' '}
-          <Text style={styles.loginLink}>Login</Text>
-        </Text>
-      </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerContainer: {
-    marginVertical: hp(2),
-    width: wp(90),
-    marginBottom: hp(2),
-  },
-  inputContainer: {
-    marginBottom: hp(2),
-  },
-  textInputStyle: {
-    fontSize: fontSize.normal,
-    elevation: 5,
-    height: hp(6),
-    width: wp(90),
-    marginBottom: hp(2),
-    color: Colors.text_black,
-  },
-  textStyle: {
-    fontSize: fontSize.normal,
-    fontFamily: Fonts.medium,
-    color: 'black',
-  },
-  TitleText: {
-    fontSize: fontSize.xl,
-    fontFamily: Fonts.medium,
-    fontWeight: '700',
-  },
-  SubText: {
-    fontSize: fontSize.medium,
-    fontFamily: Fonts.medium,
-    color: Colors.form_text,
-  },
-  btnStyles: {
-    width: wp(90),
-  },
-  btnTextStyle: {
-    color: 'white',
-  },
-  loginRedirectContainer: {
-    marginTop: hp(2),
-  },
-  loginText: {
-    fontSize: fontSize.normal,
-    fontFamily: Fonts.medium,
-    color: Colors.form_text,
-  },
-  loginLink: {
-    color: Colors.primary, // or any highlight color you prefer
-    textDecorationLine: 'underline',
-  },
-});

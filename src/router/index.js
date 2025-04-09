@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SplashScreen from '../screens/AuthScreens/SplashScreen';
-import LoginScreen from '../screens/AuthScreens/Login';
+import LoginScreen from '../screens/AuthScreens/LoginScreen';
 import TabNavigator from './TabNavigator/Index';
 import {NavigationContainer} from '@react-navigation/native';
 import SignUp from '../screens/AuthScreens/SignUpScreen';
