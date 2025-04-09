@@ -1,18 +1,32 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'; // Or use any icon library you prefer
 import Colors from '../utils/Constants/Colors';
 import Icons, {iconType} from '../assets/icon/Icons';
 
-const CustomHeader = ({username = 'Lakhan N', navigation}) => {
+const CustomHeader = ({
+  username = 'Lakhan N',
+  navigation,
+  showBack = false,
+  onBackPress,
+}) => {
   return (
     <View style={styles.headerContainer}>
-      {/* Greeting */}
-      <Text style={styles.greetingText}>Hi, {username}</Text>
+      <View style={styles.leftContainer}>
+        {showBack && (
+          <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
+            <Icons
+              type={iconType.ionicon}
+              name="chevron-back"
+              size={24}
+              color="#000"
+            />
+          </TouchableOpacity>
+        )}
+        <Text style={styles.greetingText}>Hi, {username}</Text>
+      </View>
 
-      {/* Icons */}
       <View style={styles.iconContainer}>
-        {/* Search Icon */}
+        {/* Search */}
         <TouchableOpacity>
           <Icons
             type={iconType.ionicon}
@@ -22,9 +36,9 @@ const CustomHeader = ({username = 'Lakhan N', navigation}) => {
           />
         </TouchableOpacity>
 
-        {/* Notification Icon with Red Dot */}
+        {/* Notifications */}
         <TouchableOpacity
-          onPress={() => navigation.navigate('Notifications')}
+          onPress={() => navigation?.navigate('Notifications')}
           style={styles.bellWrapper}>
           <Icons
             type={iconType.ionicon}
@@ -46,25 +60,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 20,
-    backgroundColor: Colors.background_transperant_dark, // Match the background from the image
+    backgroundColor: Colors.background_transperant_dark,
+  },
+  leftContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  backButton: {
+    marginRight: 8,
   },
   greetingText: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
     color: '#000',
   },
   iconContainer: {
     flexDirection: 'row',
-    gap: 16,
     alignItems: 'center',
+    gap: 16,
   },
   bellWrapper: {
     position: 'relative',
   },
   redDot: {
     position: 'absolute',
-    top: 0,
-    right: 0,
+    top: -2,
+    right: -2,
     width: 8,
     height: 8,
     borderRadius: 4,

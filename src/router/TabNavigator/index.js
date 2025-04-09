@@ -1,62 +1,110 @@
-//    --- React & core Hooks ---
 import React from 'react';
-
-//    --- React Native UI Components ---
-import {StyleSheet, Text, View} from 'react-native';
-
-//   --- Navigation ---
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-//    --- Reusable Components ---
-import CustomHeader from '../../Components/CustomHeader';
-
-//    --- UI Screen ---
-import HomeScreen from '../../screens/HomeScreen';
-import ChallengesScreen from '../../screens/ChallengesScreen';
-import EventsScreen from '../../screens/EventsScreen';
-import TrainingScreen from '../../screens/TrainingScreen';
-
-//   --- Constants & Utils ---
-import {App_paths} from '../../utils/Constants';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import Icons, {iconType} from '../../assets/icon/Icons';
+import HomeScreen from '../../screens/HomeScreen';
+import EventsScreen from '../../screens/EventsScreen';
+import ChallengesScreen from '../../screens/ChallengesScreen';
+import TrainingScreen from '../../screens/TrainingScreen';
+import {App_paths} from '../../utils/Constants';
+import CustomHeader from '../../Components/CustomHeader';
+import {useNavigation} from '@react-navigation/native';
+
+const Tab = createBottomTabNavigator();
 
 export default function Index() {
-  const Tab = createBottomTabNavigator();
+  const navigation = useNavigation();
+
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
+        header: ({navigation}) => (
+          <CustomHeader
+            title={route.name}
+            showBack={navigation.canGoBack()}
+            onBackPress={() => navigation.goBack()}
+          />
+        ),
+        tabBarShowLabel: false,
+        tabBarStyle: styles.tabBar,
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
-
-          if (route.name === App_paths?.Home) {
-            iconName = focused ? 'home' : 'home';
-          } else if (route.name === App_paths?.Events) {
-            iconName = focused ? 'clock' : 'clock';
-          } else if (route.name === App_paths?.Challenge) {
-            iconName = focused ? 'dot-circle' : 'dot-circle';
-          } else if (route.name === App_paths?.Training) {
-            iconName = focused ? 'snowboarding' : 'snowboarding';
+        
+          if (route.name === App_paths.Home) {
+            iconName = 'home';
+          } else if (route.name === App_paths.Events) {
+            iconName = 'user';
+          } else if (route.name === App_paths.Challenge) {
+            iconName = 'home'; // or any icon
+          } else if (route.name === App_paths.Training) {
+            iconName = 'ellipsis-h';
           }
-
+        
+          
+        
+          
+            return (
+              <View style={focused ? styles.centerIconWrapper : {}}>
+                <Icons
+                  type={iconType.fa5}
+                  name={iconName}
+                  size={24}
+                  color={focused ? '#000' : '#fff'} // black icon on yellow bg
+                />
+              </View>
+            );
+          
+        
           return (
             <Icons
               type={iconType.fa5}
               name={iconName}
               size={24}
-              color={color}
+              color={focused ? '#fff' : '#aaa'}
             />
           );
-        },
-        header: () => <CustomHeader title={route.name} />,
+        }
       })}>
-      <Tab.Screen name={App_paths?.Home} component={HomeScreen} />
-      <Tab.Screen name={App_paths?.Events} component={EventsScreen} />
-      <Tab.Screen name={App_paths?.Challenge} component={ChallengesScreen} />
-      <Tab.Screen name={App_paths?.Training} component={TrainingScreen} />
+      <Tab.Screen name={App_paths.Home} component={HomeScreen} />
+      <Tab.Screen name={App_paths.Events} component={EventsScreen} />
+      <Tab.Screen name={App_paths.Challenge} component={ChallengesScreen} />
+      <Tab.Screen name={App_paths.Training} component={TrainingScreen} />
     </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  tabBar: {
+    position: 'absolute',
+    bottom: 16,
+    left: 20,
+    right: 20,
+    backgroundColor: '#000',
+    borderRadius: 50,
+    height: 64,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 25,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: {width: 0, height: 5},
+    shadowRadius: 10,
+    elevation: 10,
+  },
+  centerIconWrapper: {
+    backgroundColor: '#FFE985',
+    padding: 14,
+    borderRadius: 32,
+    // marginTop: -30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 6,
+    elevation: 8,
+  },
+  activeMenu:{
+    color:"#fff"
+  }
+});
