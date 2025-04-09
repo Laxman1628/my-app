@@ -5,7 +5,7 @@ import SplashScreen from '../screens/AuthScreens/SplashScreen';
 import LoginScreen from '../screens/AuthScreens/Login';
 import TabNavigator from './TabNavigator/Index';
 import {NavigationContainer} from '@react-navigation/native';
-import SignUp from '../screens/AuthScreens/SignUp';
+import SignUp from '../screens/AuthScreens/SignUpScreen';
 import OtpScreen from '../screens/AuthScreens/OtpScreen';
 import Strings from '../utils/Constants/Strings';
 

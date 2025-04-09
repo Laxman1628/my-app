@@ -1,7 +1,7 @@
 import { StyleSheet, ImageBackground } from 'react-native'
 import React from 'react'
+import { Images } from '../../utils/Constants/Images'
 // import Loader from '../loader/Loader'
-import { Images } from '../../../utils/constants/Images'
 
 const CustomImageBackground = props => {
   return (
