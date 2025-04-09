@@ -20,6 +20,8 @@ export const EncryptionService = {
         }
     },
 
+    
+
     // Method to decrypt data using AES-256
     decrypt: (encryptedData) => {
         try {
