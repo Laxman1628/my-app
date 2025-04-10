@@ -1,13 +1,34 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-
+import PieProgressBar from './Charts/PieProgressBar';
+import {fontSize} from '../utils/Constants/Fonts';
+import Colors from '../utils/Constants/Colors';
 
 export default function HomeScreen({navigation}) {
   const [selected, setSelected] = useState('');
 
   return (
     <View style={styles.container}>
-      <Text>Welcome To ND APP</Text>
+      <View
+        style={{
+          backgroundColor: '#ffe501',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          height: '300px',
+          borderRadius: 15,
+        }}>
+        <View>
+          <Text style={{fontsize: fontSize.xl, fontWeight: '600'}}>
+            Daily Score
+          </Text>
+          <Text style={{color:Colors.gray}}><Text style={{color:Colors.Dark}}>4/7</Text> tasks completed</Text>
+        </View>
+        <View>
+          <PieProgressBar />
+        </View>
+      </View>
     </View>
   );
 }
@@ -17,6 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: '#F5F5DC', // Coffee Beige Background
     padding: 20,
+    backgroundColor:"#212121"
   },
   header: {
     fontSize: 24,

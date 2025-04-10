@@ -49,7 +49,7 @@ export default function Index() {
                   type={iconType.fa5}
                   name={iconName}
                   size={24}
-                  color={focused ? '#000' : '#fff'} // black icon on yellow bg
+                  color={'#000' } // black icon on yellow bg
                 />
               </View>
             );
@@ -60,7 +60,7 @@ export default function Index() {
               type={iconType.fa5}
               name={iconName}
               size={24}
-              color={focused ? '#fff' : '#aaa'}
+              color={focused ? '#000' : '#aaa'}
             />
           );
         }
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     bottom: 16,
     left: 20,
     right: 20,
-    backgroundColor: '#000',
+    backgroundColor: '#fff',
     borderRadius: 50,
     height: 64,
     flexDirection: 'row',
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   centerIconWrapper: {
-    backgroundColor: '#FFE985',
+    backgroundColor: '#ffe501',
     padding: 14,
     borderRadius: 32,
     // marginTop: -30,

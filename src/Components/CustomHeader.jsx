@@ -12,7 +12,7 @@ const CustomHeader = ({
   return (
     <View style={styles.headerContainer}>
       <View style={styles.leftContainer}>
-        {showBack && (
+        {/* {showBack && (
           <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
             <Icons
               type={iconType.ionicon}
@@ -21,7 +21,7 @@ const CustomHeader = ({
               color="#000"
             />
           </TouchableOpacity>
-        )}
+        )} */}
         <Text style={styles.greetingText}>Hi, {username}</Text>
       </View>
 
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 20,
-    backgroundColor: Colors.background_transperant_dark,
+    // backgroundColor: Colors.background_transperant_dark,
   },
   leftContainer: {
     flexDirection: 'row',
@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
   },
   redDot: {
     position: 'absolute',
-    top: -2,
-    right: -2,
+    top: 0,
+    right: 0,
     width: 8,
     height: 8,
     borderRadius: 4,

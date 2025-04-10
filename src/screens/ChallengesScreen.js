@@ -4,7 +4,7 @@ import {Text, StyleSheet, ScrollView} from 'react-native';
 export default function ChallengesScreen({route}) {
   return (
     <ScrollView style={styles.container}>
-      <Text>Detail Screen</Text>
+      <Text style={{color:"#fff"}}>Detail Screen</Text>
     </ScrollView>
   );
 }
@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
 
     flex: 1,
     padding: 20,
+    backgroundColor:"#212121"
 
 },
   image: {
