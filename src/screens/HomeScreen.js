@@ -1,11 +1,50 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import {Alert, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import PieProgressBar from './Charts/PieProgressBar';
 import {fontSize} from '../utils/Constants/Fonts';
 import Colors from '../utils/Constants/Colors';
+import {PermissionsAndroid} from 'react-native';
+import messaging, { getMessaging, getToken } from '@react-native-firebase/messaging';
 
 export default function HomeScreen({navigation}) {
   const [selected, setSelected] = useState('');
+
+  useEffect(()=>{
+    RequestPermissionAndroid()
+
+    getTokena()
+  },[])
+
+
+ 
+
+  const RequestPermissionAndroid = async()=>{
+    const granted = await   PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+    if(granted === PermissionsAndroid.RESULTS.GRANTED){
+      // Alert.alert("Permission Granted")
+    }else{
+      // Alert.alert("Permission Denied")
+    }
+  }
+
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
+
+
+  const getTokena = async()=>{
+
+    const token = await getToken(getMessaging());
+
+    console.log(token , "token");
+    
+  }
+  
+
 
   return (
     <View style={styles.container}>
