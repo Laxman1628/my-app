@@ -1,11 +1,9 @@
 // In App.js in a new project
-
 import * as React from 'react';
-import Navigator from "./src/router/Index"
-import ErrorBoundary from './src/Components/errorboundary/ErrorBoundary';
+import {Text} from 'react-native';
 
 function App() {
-  return   <ErrorBoundary><Navigator /></ErrorBoundary>;
+  return <Text>Hello</Text>;
 }
 
 export default App;
