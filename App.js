@@ -23,6 +23,8 @@ function App() {
                 }
                 backgroundColor={theme.background}
               />
+
+              
               <SafeAreaView
                 style={{flex: 1, backgroundColor: theme.background}}>
                 <HomeScreens />
