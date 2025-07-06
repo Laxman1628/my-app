@@ -4,7 +4,7 @@ import {ThemeContext} from '../../data/context/ThemeProvider';
 import CustomButton from '../../common/Components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 
-const HomeScreens = props => {
+const NotificationScreen = props => {
   const {theme, toggleTheme, mode} = useContext(ThemeContext);
   const navigation = useNavigation();
   return (
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreens;
+export default NotificationScreen;

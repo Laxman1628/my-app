@@ -4,7 +4,8 @@ import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 import ErrorBoundary from './src/Components/errorboundary/ErrorBoundary';
 import {hp} from './src/common/Functions/Dimensions';
 import {ThemeContext, ThemeProvider} from './src/data/context/ThemeProvider';
-import HomeScreens from './src/screens/app/HomeScreens';
+import BottomTabs from './src/router/BottomTabs';
+import { NavigationContainer } from '@react-navigation/native';
 
 const CrashComponent = () => {
   return <Text>Hello </Text>;
@@ -24,11 +25,9 @@ function App() {
                 backgroundColor={theme.background}
               />
 
-              
-              <SafeAreaView
-                style={{flex: 1, backgroundColor: theme.background}}>
-                <HomeScreens />
-              </SafeAreaView>
+              <NavigationContainer>
+                <BottomTabs />
+              </NavigationContainer>
             </>
           )}
         </ThemeContext.Consumer>
